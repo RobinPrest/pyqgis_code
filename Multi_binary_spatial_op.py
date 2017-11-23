@@ -55,6 +55,6 @@ def wrapped_alg(algorithm_name, file_name_list, output_file):
 dir_to_process = "C:\\test\\files\\"
 output_file = "C:\\test\\result\\output.shp"
 file_name_list = [shp for shp in glob.glob(dir_to_process + "*.shp")]
-alg_name = "qgis:mergevectorlayers"
+alg_name = 'qgis:mergevectorlayers'
 # alg_name="qgis:union"
 wrapped_alg(alg_name, file_name_list, output_file)
