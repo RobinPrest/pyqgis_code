@@ -2,8 +2,7 @@ import glob
 import os
 import shutil
 import tempfile
-
-import processing
+#import processing
 
 
 def delete_shape(shape_file):
@@ -12,7 +11,7 @@ def delete_shape(shape_file):
     for extension in ext_list:
         try:
             os.remove(shape_file_no_ext + '.' + extension)
-        except:
+        except Exception as e:
             pass
 
 
@@ -24,7 +23,7 @@ def copy_shape(shape_file, destination_shape_file):
     for extension in ext_list:
         try:
             shutil.copyfile(shape_file_no_ext + '.' + extension, destination_shape_file_no_ext + '.' + extension)
-        except:
+        except Exception as e:
             pass
 
 
@@ -51,13 +50,14 @@ def wrapped_alg(algorithm_name, file_name_list, output_file):
     # copy over final file
     copy_shape(temp_file_list.pop(), output_file)
 
-def main():
 
-    dir_to_process = "C:\\test\\files\\"
-    output_file = "C:\\test\\result\\output.shp"
+def main():
+    dir_to_process = "C:\\TEMP"
+    output_file = "C:\\TEMP\\output.shp"
     file_name_list = [shp for shp in glob.glob(dir_to_process + "*.shp")]
     alg_name = 'qgis:mergevectorlayers'
     # alg_name="qgis:union"
     wrapped_alg(alg_name, file_name_list, output_file)
 
-main()
+delete_shape(r'C:\TEMP\orleans_comm_epsg2154.shp')
+#main()
